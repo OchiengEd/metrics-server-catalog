@@ -1,4 +1,4 @@
-i# The base image is expected to contain
+# The base image is expected to contain
 # /bin/opm (with a serve subcommand) and /bin/grpc_health_probe
 FROM quay.io/operator-framework/opm:latest
 
