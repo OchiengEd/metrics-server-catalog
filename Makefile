@@ -1,5 +1,5 @@
 catalog:
-	docker build -f Containerfile -t quay.io/eochieng/metrics-server-catalog:devel .
+	docker build -f Containerfile -t quay.io/eochieng/metrics-server-catalog:latest .
 
-publish-catalog:
-	docker push quay.io/eochieng/metrics-server-catalog:devel
+publish:
+	docker push quay.io/eochieng/metrics-server-catalog:latest
