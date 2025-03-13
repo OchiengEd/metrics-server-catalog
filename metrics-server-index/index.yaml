@@ -1,7 +1,7 @@
 ---
 defaultChannel: stable
 description: |
-  This is a quick and dirty README doc for the metrics-server file based catalog.
+  This is a quick and dirty README doc for the metrics-server file based catalog
 name: metrics-server
 schema: olm.package
 ---
@@ -15,36 +15,30 @@ name: stable
 package: metrics-server
 schema: olm.channel
 ---
-image: oci://registry.olmv1-system:5000/metrics-server:3.12.2
+image: registry.olmv1-system:5000/metrics-server:3.12.2
 name: metrics-server.v3.12.2
 package: metrics-server
 properties:
-- type: olm.content-type
-  value: helm
 - type: olm.package
   value:
     packageName: metrics-server
     version: 3.12.2
 schema: olm.bundle
 ---
-image: oci://registry.olmv1-system:5000/metrics-server:3.12.1
+image: registry.olmv1-system:5000/metrics-server:3.12.1
 name: metrics-server.v3.12.1
 package: metrics-server
 properties:
-- type: olm.content-type
-  value: helm
 - type: olm.package
   value:
     packageName: metrics-server
     version: 3.12.1
 schema: olm.bundle
 ---
-image: oci://registry.olmv1-system:5000/metrics-server:3.12.0
+image: registry.olmv1-system:5000/metrics-server:3.12.0
 name: metrics-server.v3.12.0
 package: metrics-server
 properties:
-- type: olm.content-type
-  value: helm
 - type: olm.package
   value:
     packageName: metrics-server
