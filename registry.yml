@@ -4,20 +4,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: metrics-catalog
-  name: metrics-catalog
+    app: registry
+  name: registry
   namespace: olmv1-system
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: metrics-catalog
+      app: registry
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: metrics-catalog
+        app: registry
     spec:
       containers:
         - image: quay.io/eochieng/metrics-server-catalog:latest
@@ -32,3 +32,21 @@ spec:
                 - ALL
           resources: {}
 status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: registry
+  name: registry
+  namespace: olmv1-system
+spec:
+  ports:
+    - port: 50051
+      protocol: TCP
+      targetPort: 50051
+  selector:
+    app: registry
+status:
+  loadBalancer: {}
