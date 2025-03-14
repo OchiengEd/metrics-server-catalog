@@ -1,0 +1,15 @@
+---
+apiVersion: olm.operatorframework.io/v1
+kind: ClusterExtension
+metadata:
+  name: metrics-server
+  namespace: default
+spec:
+  namespace: default
+  serviceAccount:
+    name: default
+  source:
+    sourceType: Catalog
+    catalog:
+      packageName: metrics-server
+      version: 3.12.0
