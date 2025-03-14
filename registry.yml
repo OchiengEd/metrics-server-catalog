@@ -43,7 +43,7 @@ spec:
           image: docker.io/library/registry:2.8.3
           env:
             - name: REGISTRY_HTTP_ADDR
-              value: "0.0.0.0:5000"
+              value: "0.0.0.0:8443"
             - name: REGISTRY_HTTP_TLS_CERTIFICATE
               value: "/certs/tls.crt"
             - name: REGISTRY_HTTP_TLS_KEY
@@ -51,7 +51,7 @@ spec:
           ports:
             - name: registry
               protocol: TCP
-              containerPort: 5000
+              containerPort: 8443
           securityContext:
             runAsUser: 999
             allowPrivilegeEscalation: false
@@ -85,9 +85,9 @@ metadata:
   namespace: olmv1-system
 spec:
   ports:
-    - port: 5000
+    - port: 443
       protocol: TCP
-      targetPort: 5000
+      targetPort: 8443
   selector:
     app: registry
 status:
