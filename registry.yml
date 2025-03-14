@@ -20,9 +20,14 @@ spec:
         app: registry
     spec:
       containers:
-        - image: quay.io/eochieng/metrics-server-catalog:latest
-          name: metrics-server-catalog
+        - image: docker.io/library/registry:2.8.3
+          name: registry
+          ports:
+            - name: registry
+              protocol: TCP
+              containerPort: 5000
           securityContext:
+            runAsUser: 999
             allowPrivilegeEscalation: false
             runAsNonRoot: true
             seccompProfile:
@@ -30,7 +35,13 @@ spec:
             capabilities:
               drop:
                 - ALL
+          volumeMounts:
+            - name: blobs
+              mountPath: /var/lib/registry/docker
           resources: {}
+      volumes:
+        - name: blobs
+          emptyDir: {}
 status: {}
 ---
 apiVersion: v1
@@ -43,9 +54,9 @@ metadata:
   namespace: olmv1-system
 spec:
   ports:
-    - port: 50051
+    - port: 5000
       protocol: TCP
-      targetPort: 50051
+      targetPort: 5000
   selector:
     app: registry
 status:

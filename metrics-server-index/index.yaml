@@ -15,7 +15,7 @@ name: stable
 package: metrics-server
 schema: olm.channel
 ---
-image: registry.olmv1-system:5000/metrics-server:3.12.2
+image: registry.olmv1-system.svc:5000/metrics-server:3.12.2
 name: metrics-server.v3.12.2
 package: metrics-server
 properties:
@@ -25,7 +25,7 @@ properties:
     version: 3.12.2
 schema: olm.bundle
 ---
-image: registry.olmv1-system:5000/metrics-server:3.12.1
+image: registry.olmv1-system.svc:5000/metrics-server:3.12.1
 name: metrics-server.v3.12.1
 package: metrics-server
 properties:
@@ -35,7 +35,7 @@ properties:
     version: 3.12.1
 schema: olm.bundle
 ---
-image: registry.olmv1-system:5000/metrics-server:3.12.0
+image: registry.olmv1-system.svc:5000/metrics-server:3.12.0
 name: metrics-server.v3.12.0
 package: metrics-server
 properties:
