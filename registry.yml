@@ -1,4 +1,23 @@
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: registry-cert
+  namespace: olmv1-system
+spec:
+  dnsNames:
+    - registry.olmv1-system.svc
+    - registry.olmv1-system.svc.cluster.local
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: olmv1-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  secretName: registry-cert
+status: {}
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,8 +39,15 @@ spec:
         app: registry
     spec:
       containers:
-        - image: docker.io/library/registry:2.8.3
-          name: registry
+        - name: registry
+          image: docker.io/library/registry:2.8.3
+          env:
+            - name: REGISTRY_HTTP_ADDR
+              value: "0.0.0.0:5000"
+            - name: REGISTRY_HTTP_TLS_CERTIFICATE
+              value: "/certs/tls.crt"
+            - name: REGISTRY_HTTP_TLS_KEY
+              value: "/certs/tls.key"
           ports:
             - name: registry
               protocol: TCP
@@ -38,10 +64,15 @@ spec:
           volumeMounts:
             - name: blobs
               mountPath: /var/lib/registry/docker
+            - name: certs
+              mountPath: /certs
           resources: {}
       volumes:
         - name: blobs
           emptyDir: {}
+        - name: certs
+          secret:
+            secretName: registry-cert
 status: {}
 ---
 apiVersion: v1
