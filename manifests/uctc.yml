@@ -1,0 +1,15 @@
+---
+apiVersion: olm.operatorframework.io/v1
+kind: ClusterExtension
+metadata:
+  name: uctc
+  namespace: default
+spec:
+  namespace: default
+  serviceAccount:
+    name: default
+  source:
+    sourceType: Catalog
+    catalog:
+      packageName: uctc
+      version: 1.6.0
