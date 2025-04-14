@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: registry
-          image: docker.io/library/registry:2.8.3
+          image: docker.io/library/registry:3.0.0
           env:
             - name: REGISTRY_HTTP_ADDR
               value: "0.0.0.0:8443"
@@ -49,6 +49,8 @@ spec:
               value: "/certs/tls.crt"
             - name: REGISTRY_HTTP_TLS_KEY
               value: "/certs/tls.key"
+            - name: OTEL_TRACES_EXPORTER
+              value: "none"
           ports:
             - name: registry
               protocol: TCP
