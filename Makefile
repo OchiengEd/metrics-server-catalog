@@ -1,3 +1,4 @@
+.PHONY: catalog
 catalog:
 	docker build -f Containerfile -t quay.io/eochieng/metrics-server-catalog:latest .
 	docker push quay.io/eochieng/metrics-server-catalog:latest
