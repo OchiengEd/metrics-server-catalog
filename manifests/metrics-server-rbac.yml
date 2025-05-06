@@ -1,9 +1,16 @@
 ---
 apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  name: metrics-server-system
+---
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   creationTimestamp: null
   name: metrics-server-installer
+  namespace: metrics-server-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -17,7 +24,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: metrics-server-installer
-  namespace: default
+  namespace: metrics-server-system
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole

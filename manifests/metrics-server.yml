@@ -3,9 +3,9 @@ apiVersion: olm.operatorframework.io/v1
 kind: ClusterExtension
 metadata:
   name: metrics-server
-  namespace: default
+  namespace: metrics-server-system
 spec:
-  namespace: default
+  namespace: metrics-server-system
   serviceAccount:
     name: metrics-server-installer
   source:
